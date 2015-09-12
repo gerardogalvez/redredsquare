@@ -17,14 +17,14 @@ public class spawnShit : MonoBehaviour {
 		//cam.transform.Translate (0, 0.01f, 0); 
         
         
-		if (Input.GetKeyDown ("space")) {
+		/*if (Input.GetKeyDown ("space")) {
 			//Instantiate obstacle between minimum and maximum position
 			pos.x = (float)Random.Range(-1f, 3f);
 			Instantiate(shit, pos, Quaternion.identity);
 
 			//gg
 			pos.y+=4.0f;
-		}
+		}*/
 
         //If the camera is 15 distance from the spawn's shit point, then it should spawn shit and move the spawn point shit
         if(cam.transform.position.y > (pos.y -15)){

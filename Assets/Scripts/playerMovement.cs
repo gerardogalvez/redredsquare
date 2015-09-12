@@ -7,11 +7,7 @@ public class playerMovement : MonoBehaviour {
 	
 	private Vector3 v3RatonPos, v3RatonPosInit, v3RatonPosFin;
 	
-	
-	
-	
 	void Update () {
-		
 		//Establecer la posicion inicial y final de cuando arrastra el dedo por la pantalla.
 		//***************************************************************************************
 		if (Input.GetMouseButtonDown(0)){ //Cuando se presiona la pantalla..
@@ -23,17 +19,12 @@ public class playerMovement : MonoBehaviour {
 			
 			// Guarda la posicion donde se dejo de presionar como posicion final del gesto.
 			v3RatonPosFin = getRatonPos(); 
-			Debug.Log ("Magnitude de la fuerza: " + (getDirection().normalized *fSensibility * getPercDis(fMaxDistance)).magnitude);
+			//Debug.Log ("Magnitude de la fuerza: " + (getDirection().normalized *fSensibility * getPercDis(fMaxDistance)).magnitude);
 			gameObject.GetComponent<Rigidbody2D>().AddForce(getDirection().normalized * getPercDis(fMaxDistance) * fSensibility);
 		}
-		//***************************************************************************************
-		
-		
-		
-		
-		
-		
+        //**************************************************************************************
 	}
+
 	float getPercDis(float fMaxDis){
 		float distance = (v3RatonPosFin - v3RatonPosInit).magnitude;
 		if (distance > fMaxDis)
@@ -47,10 +38,7 @@ public class playerMovement : MonoBehaviour {
 		Vector3 v3Dir = v3RatonPosFin - v3RatonPosInit;
 		return v3Dir;
 	}
-	
-	
-	
-	
+
 	Vector3 getRatonPos(){
 		
 		v3RatonPos = Input.mousePosition; //Tomar la posicion donde esta el mouse (en pixeles).
@@ -58,4 +46,16 @@ public class playerMovement : MonoBehaviour {
 		v3RatonPos = Camera.main.ScreenToWorldPoint (v3RatonPos); // Convertir el vector a unidades de unity 
 		return v3RatonPos; //Regresar la posicion del "Raton" utilizable.
 	}
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Middle")
+        {
+            manageScore.score++;
+
+            //Disable collider so that it only increases score one time
+            other.enabled = false;
+        } 
+    }
+
 }

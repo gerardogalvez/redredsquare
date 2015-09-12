@@ -23,6 +23,5 @@ public class cameraMovement : MonoBehaviour {
 
         }else
             transform.Translate(0.0f, cameraSpeed, 0.0f);
-
 	}
 }

@@ -12,7 +12,7 @@ public class destroyShit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (cam.transform.position.y - this.transform.position.y > 7)
+		if (cam.transform.position.y - this.transform.position.y > 12)
 			Destroy (this.gameObject);
 	}
 }
