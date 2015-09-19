@@ -3,7 +3,8 @@ using System.Collections;
 
 public class spawnShit : MonoBehaviour {
 	private Camera cam;
-	public GameObject shit;
+	public GameObject obstacle;
+    public GameObject killObstacle;
 	private Vector3 pos;
 	// Use this for initialization
 	void Start () {
@@ -29,7 +30,11 @@ public class spawnShit : MonoBehaviour {
         //If the camera is 15 distance from the spawn's shit point, then it should spawn shit and move the spawn point shit
         if(cam.transform.position.y > (pos.y -15)){
             pos.x = (float)Random.Range(-1f, 3f);
-            Instantiate(shit, pos, Quaternion.identity);
+            int num = (int)Mathf.Floor(Random.Range(1, 100));
+            if (num >= 1 && num <= 25)
+                Instantiate(killObstacle, pos, Quaternion.identity);
+            else
+                Instantiate(obstacle, pos, Quaternion.identity);
             pos.y += 4.0f; 
         }
 	}
