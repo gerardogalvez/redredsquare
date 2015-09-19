@@ -5,7 +5,7 @@ public class killPlayer : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "killObstacle")
         {
             Application.LoadLevel(Application.loadedLevel);
         }
