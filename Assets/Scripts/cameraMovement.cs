@@ -16,6 +16,7 @@ public class cameraMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        /*
         //If the player position is more than 10 units away form the camera, then the camera is going to follow him smoothly
         if(gPlayer.transform.position.y > (transform.position.y + distanceFromPlayer)){
             Vector3 gPlayerPosToFollow = new Vector3(transform.position.x, gPlayer.transform.position.y - distanceFromPlayer, transform.position.z);
@@ -23,5 +24,10 @@ public class cameraMovement : MonoBehaviour {
 
         }else
             transform.Translate(0.0f, cameraSpeed, 0.0f);
+
+        */
+       
+        Vector3 vTarget = new Vector3(gameObject.transform.position.x, gPlayer.transform.position.y, -10.0f);
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, vTarget, cameraSpeed * Time.deltaTime);
 	}
 }
