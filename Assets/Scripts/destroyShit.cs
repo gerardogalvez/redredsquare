@@ -5,7 +5,7 @@ public class destroyShit : MonoBehaviour {
 
     //private Camera cam; 
     private GameObject gParticles;
-    private float fDistDestroy = 30.0f;
+    private float fDistDestroy = 18.0f;
 	// Use this for initialization
 	void Start () {
         //cam = Camera.main;

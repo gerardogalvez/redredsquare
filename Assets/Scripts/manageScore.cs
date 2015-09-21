@@ -50,7 +50,7 @@ public class manageScore : MonoBehaviour {
             newHighscoreCanvas.alpha += 0.02f;
             yield return null;
         }
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(10);
         while (newHighscoreCanvas.alpha > 0)
         {
             newHighscoreCanvas.alpha -= 0.02f;
