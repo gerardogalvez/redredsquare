@@ -3,19 +3,19 @@ using System.Collections;
 
 public class particlesMovement : MonoBehaviour {
 
-    public string sTagPlayer = "Player";
+    //public string sTagPlayer = "Player";
     public string sTagCamera = "MainCamera";
     public float fAceleration = 1.0f;
     public float fMaxDistFromCamera = 10.0f;
     public float fVelocity = 20.0f;
 
-    private GameObject gPlayerObj;
+    //private GameObject gPlayerObj;
     private GameObject gMainCamera;
     private int iPreviousScore = 0;
 
     void Awake()
     {
-        gPlayerObj = GameObject.FindWithTag(sTagPlayer);
+        //gPlayerObj = GameObject.FindWithTag(sTagPlayer);
         gMainCamera = GameObject.FindWithTag(sTagCamera);
 
        
