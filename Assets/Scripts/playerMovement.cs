@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class playerMovement : MonoBehaviour {
-	public float fSensibility = 100.0f;
-	public float fMaxDistance = 100.0f;
-	
-	private Vector3 v3RatonPos, v3RatonPosInit, v3RatonPosFin;
+	public float fMaxStrength = 1500.0f;
+	public float fMaxDistMouseMove = 10.0f; //Max distance in units of unity that needs to be moved the mouse in order to achieve the max strength
+
+    private Vector3 v3RatonPosInit, v3RatonPosFin;
 	
 	void Update () {
 		//Establecer la posicion inicial y final de cuando arrastra el dedo por la pantalla.
@@ -14,23 +14,30 @@ public class playerMovement : MonoBehaviour {
 			
 			//Guarda la posicion donde se presiono la pantalla como posicion inicial del gesto.
 			v3RatonPosInit = getRatonPos ();
-			
+            
 		} else if (Input.GetMouseButtonUp(0)) { //De otro modo, cuando se deje de tocar la pantalla..
 			
 			// Guarda la posicion donde se dejo de presionar como posicion final del gesto.
-			v3RatonPosFin = getRatonPos(); 
-			//Debug.Log ("Magnitude de la fuerza: " + (getDirection().normalized *fSensibility * getPercDis(fMaxDistance)).magnitude);
-			gameObject.GetComponent<Rigidbody2D>().AddForce(getDirection().normalized * getPercDis(fMaxDistance) * fSensibility);
-		}
+			v3RatonPosFin = getRatonPos();
+           
+            //Debug.Log ("Magnitude de la fuerza: " + (getDirection().normalized *fSensibility * getPercDis(fMaxDistance)).magnitude);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength);
+            Debug.Log("Force added: " + (getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength));
+        }
         //**************************************************************************************
 	}
 
 	float getPercDis(float fMaxDis){
 		float distance = (v3RatonPosFin - v3RatonPosInit).magnitude;
-		if (distance > fMaxDis)
-			distance = fMaxDis;
-		
-		float percDist = distance * 100 / fMaxDis;
+        
+        if (distance > fMaxDis)
+        {
+            distance = fMaxDis;
+        }
+			
+        Debug.Log("Mouse's movement distance: " + distance);
+        float percDist = distance / fMaxDis;
+        Debug.Log("Percentage of distance returned: " + percDist);
 		return percDist;
 	}
 	
@@ -40,7 +47,8 @@ public class playerMovement : MonoBehaviour {
 	}
 
 	Vector3 getRatonPos(){
-		
+
+        Vector3 v3RatonPos;
 		v3RatonPos = Input.mousePosition; //Tomar la posicion donde esta el mouse (en pixeles).
 		v3RatonPos.z = 10.0f; //Transformar la profundidad a la misma que la de la camara.
 		v3RatonPos = Camera.main.ScreenToWorldPoint (v3RatonPos); // Convertir el vector a unidades de unity 
