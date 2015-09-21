@@ -6,14 +6,20 @@ public class manageScore : MonoBehaviour {
 
     public Text scoreText;
     public Text highscoreText;
+    public Text newHighscore;
     public static int score;
     public static int highscore;
+    private bool hasAppeared;
 
     private string highscoreKey = "highscoreKey";
+
+    private CanvasGroup newHighscoreCanvas;
 
     void Awake()
     {
         highscore = 0;
+        newHighscoreCanvas = newHighscore.GetComponent<CanvasGroup>();
+        //PlayerPrefs.DeleteAll();
     }
 
 	// Use this for initialization
@@ -23,11 +29,32 @@ public class manageScore : MonoBehaviour {
 
         scoreText.text = score.ToString();
         highscoreText.text = "Highscore: " + highscore.ToString();
+        hasAppeared = false;
 	}
 
     // Update is called once per frame
     void Update()
     {
         scoreText.text = score.ToString();
+        if (score > PlayerPrefs.GetInt(highscoreKey, 0) && !hasAppeared)
+        {
+            StartCoroutine("fadeInOut");
+            hasAppeared = true;
+        }
+    }
+
+    IEnumerator fadeInOut()
+    {
+        while (newHighscoreCanvas.alpha < 1)
+        {
+            newHighscoreCanvas.alpha += 0.02f;
+            yield return null;
+        }
+        yield return new WaitForSeconds(3);
+        while (newHighscoreCanvas.alpha > 0)
+        {
+            newHighscoreCanvas.alpha -= 0.02f;
+            yield return null;
+        }
     }
 }
