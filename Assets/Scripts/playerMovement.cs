@@ -8,23 +8,34 @@ public class playerMovement : MonoBehaviour {
     private Vector3 v3RatonPosInit, v3RatonPosFin;
 	
 	void Update () {
-		//Establecer la posicion inicial y final de cuando arrastra el dedo por la pantalla.
-		//***************************************************************************************
-		if (Input.GetMouseButtonDown(0)){ //Cuando se presiona la pantalla..
-			
-			//Guarda la posicion donde se presiono la pantalla como posicion inicial del gesto.
-			v3RatonPosInit = getRatonPos ();
-            
-		} else if (Input.GetMouseButtonUp(0)) { //De otro modo, cuando se deje de tocar la pantalla..
-			
-			// Guarda la posicion donde se dejo de presionar como posicion final del gesto.
-			v3RatonPosFin = getRatonPos();
-           
-            //Debug.Log ("Magnitude de la fuerza: " + (getDirection().normalized *fSensibility * getPercDis(fMaxDistance)).magnitude);
-            gameObject.GetComponent<Rigidbody2D>().AddForce(getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength);
-            Debug.Log("Force added: " + (getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength));
+        if (Time.timeScale > 0)
+        {
+            //Establecer la posicion inicial y final de cuando arrastra el dedo por la pantalla.
+            //***************************************************************************************
+            if (Input.GetMouseButtonDown(0))
+            { //Cuando se presiona la pantalla..
+
+                //Guarda la posicion donde se presiono la pantalla como posicion inicial del gesto.
+                v3RatonPosInit = getRatonPos();
+
+            }
+            else if (Input.GetMouseButtonUp(0))
+            { //De otro modo, cuando se deje de tocar la pantalla..
+
+                // Guarda la posicion donde se dejo de presionar como posicion final del gesto.
+                v3RatonPosFin = getRatonPos();
+
+                //Debug.Log ("Magnitude de la fuerza: " + (getDirection().normalized *fSensibility * getPercDis(fMaxDistance)).magnitude);
+                gameObject.GetComponent<Rigidbody2D>().AddForce(getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength);
+                //Debug.Log("Force added: " + (getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength));
+            }
+            //**************************************************************************************
+            fMaxStrength = 1500;
         }
-        //**************************************************************************************
+        else
+        {
+            fMaxStrength = 0;
+        }
 	}
 
 	float getPercDis(float fMaxDis){
@@ -35,9 +46,9 @@ public class playerMovement : MonoBehaviour {
             distance = fMaxDis;
         }
 			
-        Debug.Log("Mouse's movement distance: " + distance);
+        //Debug.Log("Mouse's movement distance: " + distance);
         float percDist = distance / fMaxDis;
-        Debug.Log("Percentage of distance returned: " + percDist);
+        //Debug.Log("Percentage of distance returned: " + percDist);
 		return percDist;
 	}
 	

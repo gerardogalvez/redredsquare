@@ -28,7 +28,7 @@ public class manageScore : MonoBehaviour {
         highscore = PlayerPrefs.GetInt(highscoreKey, 0);
 
         scoreText.text = score.ToString();
-        highscoreText.text = "Highscore: " + highscore.ToString();
+        highscoreText.text = "HIGHSCORE " + highscore.ToString();
         hasAppeared = false;
 	}
 
