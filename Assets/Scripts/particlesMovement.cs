@@ -5,13 +5,13 @@ public class particlesMovement : MonoBehaviour {
 
     //public string sTagPlayer = "Player";
     public string sTagCamera = "MainCamera";
-    public float fAceleration = 1.0f;
+    //public float fAceleration = 1.0f;
     public float fMaxDistFromCamera = 10.0f;
     public float fVelocity = 20.0f;
 
     //private GameObject gPlayerObj;
     private GameObject gMainCamera;
-    private int iPreviousScore = 0;
+    //private int iPreviousScore = 0;
 
     void Awake()
     {
@@ -33,7 +33,7 @@ public class particlesMovement : MonoBehaviour {
             gameObject.transform.Translate(Vector2.up * fVelocity * Time.deltaTime);
 
         
-        if(iPreviousScore != manageScore.score)
+        /*if(iPreviousScore != manageScore.score)
         {
             //Increase speed
             if (manageScore.score <= 100 && manageScore.score % 20 == 0)
@@ -41,7 +41,7 @@ public class particlesMovement : MonoBehaviour {
                 fVelocity += fAceleration;
             }
         }
-        iPreviousScore = manageScore.score;
+        iPreviousScore = manageScore.score;*/
     }
     
    
