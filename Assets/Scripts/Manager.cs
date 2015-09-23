@@ -9,6 +9,9 @@ public class Manager : MonoBehaviour {
     public GameObject pauseUI;
     public GameObject countdownText;
     public GameObject resume;
+    public GameObject deadUI;
+    public GameObject startPanel;
+    private CanvasGroup startPanelCG;
 
     // Use this for initialization
     void Start() {
@@ -16,6 +19,9 @@ public class Manager : MonoBehaviour {
         gameUI.SetActive(false);
         mainmenuUI.SetActive(true);
         pauseUI.SetActive(false);
+        startPanelCG = startPanel.GetComponent<CanvasGroup>();
+        startPanelCG.alpha = 1;
+        StartCoroutine("fadeOutPanel");
     }
 
     public void Play()
@@ -37,6 +43,11 @@ public class Manager : MonoBehaviour {
     public void Resume()
     {
         StartCoroutine("countdown");
+    }
+
+    public void PlayAgain()
+    {
+        StartCoroutine("fadeOut");
     }
 
     IEnumerator fade()
@@ -75,5 +86,28 @@ public class Manager : MonoBehaviour {
         pauseUI.SetActive(false);
         gameUI.SetActive(true);
         Time.timeScale = 1;
+    }
+
+    IEnumerator fadeOut()
+    {
+        CanvasGroup cg = deadUI.GetComponent<CanvasGroup>();
+        while (cg.alpha > 0)
+        {
+            cg.alpha -= 0.05f;
+            yield return null;
+        }
+        Application.LoadLevel(Application.loadedLevel);
+        yield return null;
+    }
+
+    IEnumerator fadeOutPanel()
+    {
+        while (startPanelCG.alpha > 0)
+        {
+            startPanelCG.alpha -= 0.05f;
+            yield return null;
+        }
+        startPanel.SetActive(false);
+        yield return null;
     }
 }
