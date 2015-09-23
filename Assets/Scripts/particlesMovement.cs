@@ -18,7 +18,7 @@ public class particlesMovement : MonoBehaviour {
         //gPlayerObj = GameObject.FindWithTag(sTagPlayer);
         gMainCamera = GameObject.FindWithTag(sTagCamera);
 
-       
+        //PlayerPrefs.DeleteAll();
     }
 
    

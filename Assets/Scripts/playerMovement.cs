@@ -71,7 +71,7 @@ public class playerMovement : MonoBehaviour {
         if (other.tag == "Middle")
         {
             manageScore.score++;
-
+            GetComponent<AudioSource>().Play();
             //Disable collider so that it only increases score one time
             other.enabled = false;
         } 

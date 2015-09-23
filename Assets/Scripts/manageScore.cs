@@ -30,6 +30,7 @@ public class manageScore : MonoBehaviour {
         scoreText.text = score.ToString();
         highscoreText.text = "HIGHSCORE " + highscore.ToString();
         hasAppeared = false;
+        
 	}
 
     // Update is called once per frame
@@ -50,6 +51,7 @@ public class manageScore : MonoBehaviour {
             newHighscoreCanvas.alpha += 0.02f;
             yield return null;
         }
+        newHighscore.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(10);
         while (newHighscoreCanvas.alpha > 0)
         {
