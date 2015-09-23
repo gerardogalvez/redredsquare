@@ -24,6 +24,15 @@ public class Manager : MonoBehaviour {
         StartCoroutine("fadeOutPanel");
     }
 
+    private const string TWITTER_ADDRESS = "http://twitter.com/intent/tweet";
+    private const string TWEET_LANGUAGE = "en";
+
+    public void shareToTwitter()
+    {
+        string textToDisplay = "I just got " + manageScore.score.ToString() + " points on ______! #Untitled";
+        Application.OpenURL(TWITTER_ADDRESS + "?text=" + WWW.EscapeURL(textToDisplay) + "&amp;lang=" + WWW.EscapeURL(TWEET_LANGUAGE));
+    }
+
     public void Play()
     {
         StartCoroutine("fade");
