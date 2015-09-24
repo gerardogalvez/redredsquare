@@ -9,12 +9,16 @@ public class ShareImageCanvas : MonoBehaviour {
     // private
     private bool isProcessing = false;
     public Image buttonShare;
-    public string mensaje;
+    private string mensaje;
 
     //function called from a button
-    public void ButtonShare()
+    public void ButtonShare(bool mainmenu)
     {
-        buttonShare.enabled = false;
+        if (mainmenu)
+            mensaje = "Check out ______! My highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play.";
+        else
+            mensaje = "Check out ______! I just got a score of " + manageScore.score.ToString() + " and my highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play.";
+        //buttonShare.enabled = false;
         if (!isProcessing)
         {
             StartCoroutine(ShareScreenshot());
@@ -57,6 +61,6 @@ public class ShareImageCanvas : MonoBehaviour {
             currentActivity.Call("startActivity", intentObject);
         }
         isProcessing = false;
-        buttonShare.enabled = true;
+        //buttonShare.enabled = true;
     }
 }
