@@ -12,6 +12,7 @@ public class Manager : MonoBehaviour {
     public GameObject deadUI;
     public GameObject startPanel;
     private CanvasGroup startPanelCG;
+    
 
     // Use this for initialization
     void Start() {
@@ -29,12 +30,14 @@ public class Manager : MonoBehaviour {
 
     public void shareToTwitter()
     {
+
         string textToDisplay = "I just got " + manageScore.score.ToString() + " points on ______! #Untitled";
         Application.OpenURL(TWITTER_ADDRESS + "?text=" + WWW.EscapeURL(textToDisplay) + "&amp;lang=" + WWW.EscapeURL(TWEET_LANGUAGE));
     }
 
     public void Play()
     {
+        Application.CaptureScreenshot("MyImage.png");
         StartCoroutine("fade");
         //mainmenuUI.SetActive(false);
         gameUI.SetActive(true);
