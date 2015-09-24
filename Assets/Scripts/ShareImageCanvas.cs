@@ -14,7 +14,7 @@ public class ShareImageCanvas : MonoBehaviour {
     //function called from a button
     public void ButtonShare()
     {
-        buttonShare.enabled = false;
+        //buttonShare.enabled = false;
         if (!isProcessing)
         {
             StartCoroutine(ShareScreenshot());
@@ -57,6 +57,6 @@ public class ShareImageCanvas : MonoBehaviour {
             currentActivity.Call("startActivity", intentObject);
         }
         isProcessing = false;
-        buttonShare.enabled = true;
+        //buttonShare.enabled = true;
     }
 }
