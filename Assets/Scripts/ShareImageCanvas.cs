@@ -9,11 +9,18 @@ public class ShareImageCanvas : MonoBehaviour {
     // private
     private bool isProcessing = false;
     public Image buttonShare;
-    public string mensaje;
+    private string mensaje;
 
     //function called from a button
-    public void ButtonShare()
+    public void ButtonShare(bool mainmenu)
     {
+<<<<<<< HEAD
+=======
+        if (mainmenu)
+            mensaje = "Check out ______! My highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play.";
+        else
+            mensaje = "Check out ______! I just got a score of " + manageScore.score.ToString() + " and my highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play.";
+>>>>>>> 05e4978bbbf16228fb1243c837e193b3af2b61cb
         //buttonShare.enabled = false;
         if (!isProcessing)
         {
