@@ -37,7 +37,7 @@ public class Manager : MonoBehaviour {
 
     public void Play()
     {
-        Application.CaptureScreenshot("MyImage.png");
+        //Application.CaptureScreenshot("MyImage.png");
         StartCoroutine("fade");
         //mainmenuUI.SetActive(false);
         gameUI.SetActive(true);
