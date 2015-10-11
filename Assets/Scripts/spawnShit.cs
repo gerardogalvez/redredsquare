@@ -11,7 +11,7 @@ public class spawnShit : MonoBehaviour {
     private Camera cam;
     private int iGoodObstaclesIndex, iSizeGoodObstacles;
     private int iBadObstaclesIndex, iSizeBadObstacles;
-
+    private GameObject gObjTemp;
     void Awake()
     {
         cam = Camera.main;
@@ -58,14 +58,21 @@ public class spawnShit : MonoBehaviour {
             pos.x = (float)Random.Range(-1f, 3f);
             int num = (int)Mathf.Floor(Random.Range(1, 100));
             if (num >= 1 && num <= 25)
-            {               
+            {
+                //gObjTemp = gArrBadObstacles[iBadObstaclesIndex];
+                //gObjTemp.transform.position = pos;
+                //gObjTemp.transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
+                //gObjTemp = gArrBadObstacles[iBadObstaclesIndex];
                 gArrBadObstacles[iBadObstaclesIndex].transform.position = pos;
                 gArrBadObstacles[iBadObstaclesIndex].transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
                 iBadObstaclesIndex = (iBadObstaclesIndex + 1) % iSizeBadObstacles;
                 //Instantiate(killObstacle, pos, Quaternion.identity);
             }
             else
-            {                
+            {
+                //gObjTemp = gArrGoodObstacles[iGoodObstaclesIndex];
+                //gObjTemp.transform.position = pos;
+                //gObjTemp.transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
                 gArrGoodObstacles[iGoodObstaclesIndex].transform.position = pos;
                 gArrGoodObstacles[iGoodObstaclesIndex].transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
                 iGoodObstaclesIndex = (iGoodObstaclesIndex + 1) % iSizeGoodObstacles;

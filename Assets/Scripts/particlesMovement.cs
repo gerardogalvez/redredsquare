@@ -11,13 +11,15 @@ public class particlesMovement : MonoBehaviour {
 
     //private GameObject gPlayerObj;
     private GameObject gMainCamera;
+    private bool bGo, bGo2;
     //private int iPreviousScore = 0;
 
     void Awake()
     {
         //gPlayerObj = GameObject.FindWithTag(sTagPlayer);
         gMainCamera = GameObject.FindWithTag(sTagCamera);
-
+        bGo = true;
+        bGo2 = true;
         //PlayerPrefs.DeleteAll();
     }
 
@@ -32,6 +34,17 @@ public class particlesMovement : MonoBehaviour {
         else
             gameObject.transform.Translate(Vector2.up * fVelocity * Time.deltaTime);
 
+        if(bGo2 && manageScore.score >= 200)
+        {
+            fVelocity = 4.0f;
+            bGo2 = false;
+        }
+        else if (bGo && manageScore.score >= 100)
+        {
+            fVelocity = 3.5f;
+            bGo = false;
+        }
+            
         
         /*if(iPreviousScore != manageScore.score)
         {
