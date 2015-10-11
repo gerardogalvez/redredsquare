@@ -2,14 +2,40 @@
 using System.Collections;
 
 public class spawnShit : MonoBehaviour {
-	private Camera cam;
+	
 	public GameObject obstacle;
     public GameObject killObstacle;
-	private Vector3 pos;
+    public GameObject[] gArrGoodObstacles;
+    public GameObject[] gArrBadObstacles;
+    private Vector3 pos;
+    private Camera cam;
+    private int iGoodObstaclesIndex, iSizeGoodObstacles;
+    private int iBadObstaclesIndex, iSizeBadObstacles;
+
+    void Awake()
+    {
+        cam = Camera.main;
+        iSizeBadObstacles = gArrBadObstacles.Length;
+        iSizeGoodObstacles = gArrGoodObstacles.Length;
+
+        Vector3 vSpawn = new Vector3(cam.transform.position.x, cam.transform.position.y - 20.0f, cam.transform.position.z);
+        //Spawn "good" and evil obstacles and save them into the array
+        for(int iC = 0; iC < iSizeGoodObstacles; iC++)
+        {
+            gArrGoodObstacles[iC] = (GameObject)Instantiate(obstacle, vSpawn, cam.transform.rotation);
+            gArrBadObstacles[iC] = (GameObject)Instantiate(killObstacle, vSpawn, cam.transform.rotation);
+        }
+
+        
+        
+    }
+
 	// Use this for initialization
 	void Start () {
 		pos = new Vector3 (0, 15, 0);
-		cam = Camera.main;
+		
+        iGoodObstaclesIndex = 0;
+        iBadObstaclesIndex = 0;
 	}
 	
 	// Update is called once per frame
@@ -32,9 +58,20 @@ public class spawnShit : MonoBehaviour {
             pos.x = (float)Random.Range(-1f, 3f);
             int num = (int)Mathf.Floor(Random.Range(1, 100));
             if (num >= 1 && num <= 25)
-                Instantiate(killObstacle, pos, Quaternion.identity);
+            {               
+                gArrBadObstacles[iBadObstaclesIndex].transform.position = pos;
+                gArrBadObstacles[iBadObstaclesIndex].transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
+                iBadObstaclesIndex = (iBadObstaclesIndex + 1) % iSizeBadObstacles;
+                //Instantiate(killObstacle, pos, Quaternion.identity);
+            }
             else
-                Instantiate(obstacle, pos, Quaternion.identity);
+            {                
+                gArrGoodObstacles[iGoodObstaclesIndex].transform.position = pos;
+                gArrGoodObstacles[iGoodObstaclesIndex].transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
+                iGoodObstaclesIndex = (iGoodObstaclesIndex + 1) % iSizeGoodObstacles;
+                //Instantiate(obstacle, pos, Quaternion.identity);
+            }
+
             pos.y += 4.0f; 
         }
 	}

@@ -17,9 +17,9 @@ public class ShareImageCanvas : MonoBehaviour {
 //<<<<<<< HEAD
 //=======
         if (mainmenu)
-            mensaje = "Check out ______! My highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play.";
+            mensaje = "Check out Red Red Square! My highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play. \nhttps://goo.gl/nQYDCP";
         else
-            mensaje = "Check out ______! I just got a score of " + manageScore.score.ToString() + " and my highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play.";
+            mensaje = "Check out Red Red Square! I just got a score of " + manageScore.score.ToString() + " and my highscore is " + PlayerPrefs.GetInt("highscoreKey").ToString() + "!\nAvailable in Google Play.\nhttps://goo.gl/nQYDCP";
 //>>>>>>> 05e4978bbbf16228fb1243c837e193b3af2b61cb
         //buttonShare.enabled = false;
         if (!isProcessing)
@@ -55,10 +55,11 @@ public class ShareImageCanvas : MonoBehaviour {
 
             intentObject.Call<AndroidJavaObject>("setType", "text/plain");
             intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_TEXT"), "" + mensaje);
-            intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_SUBJECT"), "SUBJECT");
+            intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_SUBJECT"), "Check out Red Red Square!");
 
             intentObject.Call<AndroidJavaObject>("setType", "image/jpeg");
-            AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            //AndroidJavaClass unity = new AndroidJavaClass("com.MortalDolphin.RedRedSquare");
+			AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity");
 
             currentActivity.Call("startActivity", intentObject);

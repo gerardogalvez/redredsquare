@@ -23,10 +23,13 @@ public class killPlayer : MonoBehaviour {
     {
         if (other.gameObject.tag == "killObstacle" || other.gameObject.tag == "killParticles")
         {
+            PlayerPrefs.SetInt("lastScore", manageScore.score);
+
             if (manageScore.score > manageScore.highscore)
             {
                 PlayerPrefs.SetInt(highscoreKey, manageScore.score);
                 scoreText.text = "NEW HIGHSCORE";
+                Social.ReportScore(PlayerPrefs.GetInt(highscoreKey), "CgkIpqHGg_cBEAIQAQ", (bool success) => { });
             }
             else
             {
