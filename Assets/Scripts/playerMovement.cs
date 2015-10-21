@@ -6,7 +6,14 @@ public class playerMovement : MonoBehaviour {
 	public float fMaxDistMouseMove = 10.0f; //Max distance in units of unity that needs to be moved the mouse in order to achieve the max strength
 
     private Vector3 v3RatonPosInit, v3RatonPosFin;
-	
+    private Rigidbody2D rPlayer;
+    void Start()
+    {
+        rPlayer = gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    
+    
 	void Update () {
         if (Time.timeScale > 0)
         {
@@ -26,7 +33,7 @@ public class playerMovement : MonoBehaviour {
                 v3RatonPosFin = getRatonPos();
 
                 //Debug.Log ("Magnitude de la fuerza: " + (getDirection().normalized *fSensibility * getPercDis(fMaxDistance)).magnitude);
-                gameObject.GetComponent<Rigidbody2D>().AddForce(getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength);
+                rPlayer.AddForce(getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength);
                 //Debug.Log("Force added: " + (getDirection().normalized * getPercDis(fMaxDistMouseMove) * fMaxStrength));
             }
             //**************************************************************************************
@@ -37,7 +44,7 @@ public class playerMovement : MonoBehaviour {
             fMaxStrength = 0;
         }
 	}
-
+    
 	float getPercDis(float fMaxDis){
 		float distance = (v3RatonPosFin - v3RatonPosInit).magnitude;
         
@@ -70,9 +77,10 @@ public class playerMovement : MonoBehaviour {
     {
         if (other.tag == "Middle")
         {
-            manageScore.score++;
             GetComponent<AudioSource>().Play();
+            manageScore.score++;
             //Disable collider so that it only increases score one time
+            gameDifficulty.instance.setDifficulty();
             other.enabled = false;
         } 
     }

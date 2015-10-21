@@ -11,12 +11,14 @@ public class Manager : MonoBehaviour {
     public GameObject resume;
     public GameObject deadUI;
     public GameObject startPanel;
+    public GameObject swipeText;
     private CanvasGroup startPanelCG;
     
 
     // Use this for initialization
     void Start() {
         Time.timeScale = 0;
+        swipeText.SetActive(false);
         gameUI.SetActive(false);
         mainmenuUI.SetActive(true);
         pauseUI.SetActive(false);
@@ -39,8 +41,10 @@ public class Manager : MonoBehaviour {
     {
         //Application.CaptureScreenshot("MyImage.png");
         StartCoroutine("fade");
+        StartCoroutine("fadeIn");
         //mainmenuUI.SetActive(false);
-        gameUI.SetActive(true);
+        //gameUI.SetActive(true);
+        swipeText.SetActive(true);
         Time.timeScale = 1;
     }
 
@@ -60,18 +64,6 @@ public class Manager : MonoBehaviour {
     public void PlayAgain()
     {
         StartCoroutine("fadeOut");
-    }
-
-    IEnumerator fade()
-    {
-        CanvasGroup canvasGroup = mainmenuUI.GetComponent<CanvasGroup>();
-        while(canvasGroup.alpha>0)
-        {
-            canvasGroup.alpha -= 0.05f;
-            yield return null;
-        }
-        mainmenuUI.SetActive(false);
-        yield return null;
     }
 
     IEnumerator waitForRealSeconds(float time)
@@ -101,14 +93,38 @@ public class Manager : MonoBehaviour {
     }
 
     IEnumerator fadeOut()
-    {
+    {     
         CanvasGroup cg = deadUI.GetComponent<CanvasGroup>();
         while (cg.alpha > 0)
         {
             cg.alpha -= 0.05f;
             yield return null;
-        }
+        }    
         Application.LoadLevel(Application.loadedLevel);
+        yield return null;
+    }
+
+    IEnumerator fade()
+    {
+        CanvasGroup canvasGroup = mainmenuUI.GetComponent<CanvasGroup>();
+        while (canvasGroup.alpha > 0)
+        {
+            canvasGroup.alpha -= 0.05f;
+            yield return null;
+        }
+        mainmenuUI.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator fadeIn()
+    {
+        gameUI.SetActive(true);
+        CanvasGroup canvasGroup = gameUI.GetComponent<CanvasGroup>();
+        while (canvasGroup.alpha < 1)
+        {
+            canvasGroup.alpha += 0.05f;
+            yield return null;
+        }
         yield return null;
     }
 

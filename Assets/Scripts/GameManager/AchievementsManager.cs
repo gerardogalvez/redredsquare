@@ -7,7 +7,7 @@ public class AchievementsManager : MonoBehaviour
 
     void Start()
     {
-
+        //int iHighScore = PlayerPrefs.GetInt("highscoreKey") <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         //Achievemnt of "Rookie"
         if (PlayerPrefs.GetInt("highscoreKey") >= 5)
         {
