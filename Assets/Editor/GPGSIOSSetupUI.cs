@@ -40,7 +40,7 @@ public class GPGSIOSSetupUI : EditorWindow {
         mBundleId = GPGSProjectSettings.Instance.Get("ios.BundleId");
 
         if (mBundleId.Trim().Length == 0) {
-            mBundleId = PlayerSettings.bundleIdentifier;
+            mBundleId = PlayerSettings.applicationIdentifier;
         }
     }
 

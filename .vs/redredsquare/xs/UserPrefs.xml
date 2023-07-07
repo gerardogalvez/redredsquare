@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{FBD1C2AF-236D-248B-4BBA-52A8AE2B741A}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GooglePlayGames/ISocialPlatform/PlayGamesPlatform.cs">
+    <Files>
+      <File FileName="Assets/GooglePlayGames/ISocialPlatform/PlayGamesPlatform.cs" Line="26" Column="48" />
+      <File FileName="Assets/GooglePlayGames/ISocialPlatform/PlayGamesLocalUser.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="redredsquare" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="GooglePlayGames" expanded="True">
+                <Node name="ISocialPlatform" expanded="True">
+                  <Node name="PlayGamesPlatform.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fc57683f-00a0-4d03-8092-a79b6db871ed" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

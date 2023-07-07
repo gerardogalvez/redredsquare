@@ -53,6 +53,11 @@ namespace GooglePlayGames {
             }
         }
 
+        public void Authenticate(Action<bool, string> callback)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Not implemented. Returns an empty list.
         /// </summary>

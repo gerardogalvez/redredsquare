@@ -23,6 +23,8 @@ using GooglePlayGames.BasicApi;
 using GooglePlayGames.OurUtils;
 using GooglePlayGames.BasicApi.Multiplayer;
 
+using Logger = GooglePlayGames.OurUtils.Logger;
+
 namespace GooglePlayGames {
     /// <summary>
     /// Provides access to the Google Play Games platform. This is an implementation of
@@ -617,6 +619,11 @@ namespace GooglePlayGames {
                 return result;
             }
             return id;
+        }
+
+        public void Authenticate(ILocalUser user, Action<bool, string> callback)
+        {
+            throw new NotImplementedException();
         }
     }
 }
