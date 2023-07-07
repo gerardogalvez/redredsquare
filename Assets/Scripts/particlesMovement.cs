@@ -24,14 +24,17 @@ public class particlesMovement : MonoBehaviour {
         bGo2 = true;
         bGo3 = true;
         */
-        fVelocity = gameDifficulty.instance.fDifficulty;
+        
         //PlayerPrefs.DeleteAll();
     }
 
-   
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+        fVelocity = gameDifficulty.instance.fDifficulty;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         //Camera movement
         if (gMainCamera.transform.position.y - transform.position.y > fMaxDistFromCamera)
